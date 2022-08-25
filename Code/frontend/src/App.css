@@ -1,38 +1,103 @@
-.App {
-  text-align: center;
+main{
+  background: url(./img/homepage/homepageBanner-20.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  padding-bottom: 80px
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav{
+  background: url(./img/homepage/homepageBanner-20.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 280px
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logo{
+  width: 50px;
+  height: 50px
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.button,.btn-black{
+  background-color: black !important;
   color: white;
+  margin: 0 1rem;
+  border-radius: 18px;
+  transition: all 0.5s;
 }
-
-.App-link {
-  color: #61dafb;
+.button:hover,.btn-black:hover{
+  background-color: white!important;
+  color: black;
+  transform: scale(1.1);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.active{
+  background-color: white !important;
+}
+.active:hover{
+  background-color: black !important;
+  color: white !important;
+  transform: scale(1.4);
+}
+.btn{
+  margin: 0;
+}
+.blue-card{
+  background : #00E6FF;
+  background : rgba(0, 230, 255, 1);
+  border-radius : 36px;
+  -moz-border-radius : 36px;
+  -webkit-border-radius : 36px;
+}
+input,.form-control{
+  border-radius: 30px
+}
+.BMI-Calculator img{
+  height: 200px !important;
+}
+.card-why{
+  border-radius : 36px;
+  -moz-border-radius : 36px;
+  -webkit-border-radius : 36px;
+  padding : 3rem;
+  box-shadow: 0 0 6px gray;
+}
+.card-why .row{
+  justify-content: space-between;
+}
+.card-why .row .text{
+  margin-left: 2rem;
+}
+.heading{
+  width:fit-content;
+  color : rgb(6, 147, 227);
+}
+.heading div{
+ width: 80%;
+ background:rgb(6, 147, 227);
+ height: 0.5rem
+}
+.homepageEnd{
+  background: url(./img/homepage/Asset\ 8-20.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  padding-top: 80px;
+  padding-bottom:160px;
+  position: relative;
+  z-index:-1;
+}
+.homepageEnd img{
+  width: 200px;
+}
+footer{
+  z-index:2;
+  background: url(./img/homepage/footer.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  padding-top: 80px;
+  padding-bottom:30px;
+  margin-top: -130px !important;
+}
+@media only screen and (max-width: 576px)  {
+  .d-xsm-none{
+    display:none;
   }
 }
