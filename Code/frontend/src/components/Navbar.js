@@ -11,7 +11,7 @@ export default function Navbar() {
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav ms-auto">
         <li className="nav-item">
-          <Link className="nav-link active button" aria-current="page" to="/">Home</Link>
+          <Link className="nav-link button" to="/">Home</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link button" to="/Contact">Contact</Link>

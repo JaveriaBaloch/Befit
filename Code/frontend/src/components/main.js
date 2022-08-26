@@ -1,6 +1,7 @@
 const MainForHomePage=()=>{
+    
     return(
-        <div className="container py-5">
+        <div className="container py-5" id="#Contact">
             <div className="row justify-content-between">
                 <div className="col-lg-4 col-sm-8 col-md-6 my-3 mx-auto">
                     <h1>Be healthy Be Happy</h1>

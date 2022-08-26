@@ -1,7 +1,7 @@
 import img from "../img/homepage/Asset 2-20.jpg"
 import img1 from "../img/homepage/food1.png"
 import img2 from "../img/homepage/tranning.png"
-
+import {Link} from "react-router-dom"
 import Calculate from '../components/calculator'
 import {MainForHomePage} from '../components/main'
 function Home(){
@@ -43,13 +43,19 @@ function Home(){
                         <div className="col-xl-3 col-lg-4 col-md-5 col-sm-10 mx-4 my-3">
                             <div className="card card-body">
                                 <h3>Request trainning</h3>
-                                <button className="btn btn-black">Request</button>
+                                <div className="mx-auto">
+                                    <Link to="/Register" className="btn btn-black">Request</Link>
+                                    <Link to="/login" className="btn btn-black">Login</Link>
+                                </div>
                                 </div>
                         </div>
                         <div className="col-xl-3 col-lg-5 col-md-5 col-sm-10 mx-4 my-3">
                             <div className="card card-body">
                                 <h3>Request a Diet plan</h3>
-                                <button className="btn btn-black">Request</button>
+                                <div className="mx-auto">
+                                    <Link to="/Register" className="btn btn-black">Request</Link>
+                                    <Link to="/login" className="btn btn-black">Login</Link>
+                                </div>
                             </div>
                         </div>
                         <div className="d-xsm-none col-5 d-xl-none d-lg-block d-md-none d-sm-none mx-auto">
