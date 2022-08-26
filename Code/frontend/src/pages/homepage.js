@@ -47,7 +47,7 @@ function Home(){
                                     <Link to="/Register" className="btn btn-black">Request</Link>
                                     <Link to="/login" className="btn btn-black">Login</Link>
                                 </div>
-                                </div>
+                            </div>
                         </div>
                         <div className="col-xl-3 col-lg-5 col-md-5 col-sm-10 mx-4 my-3">
                             <div className="card card-body">
