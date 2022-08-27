@@ -1,6 +1,11 @@
 import {Link} from 'react-router-dom';
 import logo from '../img/homepage/logo.png'
+
 export default function Navbar() {
+  const logout = () =>{
+    localStorage.clear();
+    window.location.href = "http://localhost:3000"
+  }
   return (
   <nav className="navbar navbar-expand-lg">
   <div className="container-fluid">
@@ -9,6 +14,28 @@ export default function Navbar() {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarNav">
+      {/* navbar for logged In  user */
+      localStorage.getItem("role") === "user" &&
+      <ul className="navbar-nav ms-auto">
+        <li className="nav-item">
+          <Link className="nav-link button" to="/">Home</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link button" to="/Profile">Profile</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link button" to="/Queries">Your Queries</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link button" to="/Contact">Contact</Link>
+        </li>
+        <li className="nav-item">
+          <button className="btn btn-danger rounded-pill" to="/Contact" onClick={logout}>LogOut</button>
+        </li>
+      </ul>
+      }
+      {/* navbar for user */
+      localStorage.getItem("role") !== "user" &&
       <ul className="navbar-nav ms-auto">
         <li className="nav-item">
           <Link className="nav-link button" to="/">Home</Link>
@@ -20,6 +47,7 @@ export default function Navbar() {
           <Link className="nav-link button" to="/Register">Register</Link>
         </li>
       </ul>
+      }
     </div>
   </div>
 </nav>

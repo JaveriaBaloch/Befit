@@ -36,26 +36,48 @@ function Home(){
                         <h1 className="text-white">Still Worried about your Health!</h1>
                         <div className="mb-3 mx-auto bg-white"/>
                     </div>
-                    <div className="row d-flex justify-content-center" id="plan">
+                    <div className="row d-flex justify-content-center align-items-center text-center" id="plan">
                         <div className=" col-5 d-xl-none d-lg-block d-md-none d-xsm-none d-sm-none mx-auto">
                             <img src={img1}/>
                         </div>
-                        <div className="col-xl-3 col-lg-4 col-md-5 col-sm-10 mx-4 my-3">
+                        <div className="col-xl-4 col-lg-4 col-md-5 col-sm-10 mx-4 my-3 ">
                             <div className="card card-body">
                                 <h3>Request trainning</h3>
+                                {localStorage.getItem("name") === null &&
                                 <div className="mx-auto">
                                     <Link to="/Register" className="btn btn-black">Request</Link>
                                     <Link to="/login" className="btn btn-black">Login</Link>
                                 </div>
+                                }
+                                {localStorage.getItem("name") !== null &&
+                                <div className="mx-auto">
+                                    <input className= "form-control form-control-lg my-3" disabled value={localStorage.getItem("name")}/>
+                                    <input className= "form-control form-control-lg my-3" disabled value={localStorage.getItem("email")}/>
+                                    <textarea placeholder="Enter your query" className= "form-control form-control-lg my-3 rounded" cols="6" rows="5"/>
+                                    <button className="btn btn-lg btn-black w-75 mx-auto">Submit</button>
+                                </div>
+                                }
+                               
                             </div>
                         </div>
-                        <div className="col-xl-3 col-lg-5 col-md-5 col-sm-10 mx-4 my-3">
+                        <div className="col-xl-4 col-lg-6 col-md-5 col-sm-10 mx-4 my-3">
                             <div className="card card-body">
                                 <h3>Request a Diet plan</h3>
+                                {localStorage.getItem("name") === null &&
                                 <div className="mx-auto">
                                     <Link to="/Register" className="btn btn-black">Request</Link>
                                     <Link to="/login" className="btn btn-black">Login</Link>
                                 </div>
+                                }
+                                {localStorage.getItem("name") !== null &&
+                                <div className="mx-auto">
+                                    <input className= "form-control form-control-lg my-3" disabled value={localStorage.getItem("name")}/>
+                                    <input className= "form-control form-control-lg my-3" disabled value={localStorage.getItem("email")}/>
+                                    <textarea placeholder="Enter your query" className= "form-control form-control-lg my-3 rounded" cols="6" rows="5"/>
+                                    <button className="btn btn-lg btn-black w-75 mx-auto">Submit</button>
+                                </div>
+                                }
+                               
                             </div>
                         </div>
                         <div className="d-xsm-none col-5 d-xl-none d-lg-block d-md-none d-sm-none mx-auto">

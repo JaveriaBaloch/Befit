@@ -9,13 +9,13 @@ function Contact_Us(){
             </div>
             </main>
         
-        <div className="container-fluid py-5">
+        <div className="container-fluid">
             
-            <div className="row my-1 pb-5">
+            <div className="row my-1 mb-5">
                 
                 <div className="mx-auto my-1 mb-5">
                     <div className="card card-body bg-blue mx-auto">
-                        <div className="part1 my-auto">
+                        <div className="part1 my-auto text-left text-md-center">
                             Email : <a href="mailto:Befit@gmail.org" className="text-black my-3  text-decoration-none">Befit@gmail.org</a>
                             <br/>
                             <br/>
@@ -24,10 +24,10 @@ function Contact_Us(){
                             <br/>
                             Address: <a href="#address" className="text-black my-3 text-decoration-none">4 N Harvard Street, Aberdeen,sd, 53401  United States</a>
                         </div>
-                        <div className="part2">
-                        <input className="form-control my-2" placeholder="Name" required/>
-                        <input className="form-control my-2" type="email" placeholder="Email"/>
-                        <textarea className="form-control my-2" placeholder="Message" cols="10" rows="10"></textarea>
+                        <div className="part2 my-auto">
+                        <input className="form-control form-control-lg my-2" placeholder="Name" required/>
+                        <input className="form-control form-control-lg my-2" type="email" placeholder="Email"/>
+                        <textarea className="form-control form-control-lg my-2" placeholder="Message" cols="10" rows="10"></textarea>
                         <button className="btn btn-black btn-lg">Send Message</button>
                         </div>
                     </div>

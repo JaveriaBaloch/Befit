@@ -96,7 +96,7 @@ input,.form-control{
   z-index: 1;
 }
 .homepageEnd img{
-  width: 200px;
+  width: 300px;
 }
 footer{
   z-index:2;
@@ -107,6 +107,10 @@ footer{
   padding-top: 80px;
   padding-bottom:30px;
   margin-top: -130px !important;
+}
+.card{
+  border-radius: 38px;
+  overflow: hidden;
 }
 /* HomePage Css ends*/
 
