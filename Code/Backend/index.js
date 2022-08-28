@@ -95,6 +95,18 @@ app.post("/TrainningQuery",(req,res)=>{
     })
 
 })
+app.post("/YourQueries",(req,res)=>{
+    const select = "Select * From Requests where email = ? order by `timestamp`"
+    db.query(select,[req.body.email],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({queries: result})
+      }
+    })
+
+})
 app.listen(3001,()=>{
     console.log("app is running")
 })

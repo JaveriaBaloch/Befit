@@ -39,4 +39,10 @@ const MainForHomePage=()=>{
         </div>
     )
 }
-export {MainForHomePage}
+function QueriesMainPage (){
+    return(<div className="container py-5 text-center" >
+               <h1 className="mx-auto">Your Queries</h1>
+        </div>
+    )
+}
+export {MainForHomePage, QueriesMainPage}

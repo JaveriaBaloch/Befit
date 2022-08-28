@@ -6,6 +6,7 @@ import Footer from './components/footer'
 import Contact_Us from './pages/Contact-Us';
 import Register from './pages/Register';
 import SignIn from './pages/SignIn';
+import YourQueries from './pages/Your-Queries';
 
 
 function App() {
@@ -15,9 +16,10 @@ function App() {
       <Nav/>
       <Routes>
         <Route path="/" exact element={<Home/>}/>
-        <Route path="/Contact" exact element={<Contact_Us/>}/>
-        <Route path="/Register" exact element={<Register/>}/>
-        <Route path="/SignIn" exact element={<SignIn/>}/>
+        <Route path="/Contact" element={<Contact_Us/>}/>
+        <Route path="/Register" element={<Register/>}/>
+        <Route path="/SignIn" element={<SignIn/>}/>
+        <Route path="/Queries"  element={<YourQueries/>}/>
       </Routes>
       <Footer/>
     </div>
