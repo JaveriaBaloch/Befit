@@ -5,6 +5,8 @@ import Home from './pages/homepage';
 import Footer from './components/footer'
 import Contact_Us from './pages/Contact-Us';
 import Register from './pages/Register';
+import SignIn from './pages/SignIn';
+
 
 function App() {
 
@@ -15,6 +17,7 @@ function App() {
         <Route path="/" exact element={<Home/>}/>
         <Route path="/Contact" exact element={<Contact_Us/>}/>
         <Route path="/Register" exact element={<Register/>}/>
+        <Route path="/SignIn" exact element={<SignIn/>}/>
       </Routes>
       <Footer/>
     </div>

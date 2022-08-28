@@ -44,7 +44,18 @@ app.post("/AddUser",(req,res)=>{
         }
     })
 })
+app.post("/Login",(req,res)=>{
+    const Check = `SELECT * FROM users WHERE Email = ? and Password=?`
+    db.query(Check,[req.body.email,req.body.password],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({user: result})
+      }
+    })
 
+})
 app.listen(3001,()=>{
     console.log("app is running")
 })
