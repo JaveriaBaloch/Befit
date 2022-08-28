@@ -56,6 +56,19 @@ app.post("/Login",(req,res)=>{
     })
 
 })
+app.post("/SendMessage",(req,res)=>{
+    const Insert = `Insert into Contact_Us(username,email,msg) values (?,?,?)`
+    console.log(req.body)
+    db.query(Insert,[req.body.username,req.body.email,req.body.msg],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({user: result})
+      }
+    })
+
+})
 app.listen(3001,()=>{
     console.log("app is running")
 })
