@@ -5,8 +5,11 @@
 -- 3. Password "Potsdam!sGr8"
 -- 4. run the below code in workbench
 
+
+-- creating the schema for the project
 create schema Befit;
 use Befit;
+
 -- table for users
 CREATE TABLE `Befit`.`users` (
   `ID` INT NOT NULL AUTO_INCREMENT,
