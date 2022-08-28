@@ -11,7 +11,7 @@ function SignIn(){
     const submit = (e) => {
         e.preventDefault()
         if(password === "" || email === ""){
-            setMessage("All the flieds are required!")
+            setMessage("All the fields are required!")
         }else{
                 axios.post('http://localhost:3001/Login',{email:email,password:password}).then((response)=>{
                     if(password==response.data.user[0].Password){

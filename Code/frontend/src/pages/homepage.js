@@ -17,7 +17,7 @@ function Home(){
         setUsername(localStorage.getItem("name"))
         setEmail(localStorage.getItem("email"))
         if(msg ===""){
-            setErr("All the flieds are required")
+            setErr("All the fields are required")
             setCls("alert alert-danger")
         }else{
             axios.post("http://localhost:3001/DeitQuery",{username,email,msg,plan:"diet"}).then(e=>{
@@ -34,7 +34,7 @@ function Home(){
         setUsername(localStorage.getItem("name"))
         setEmail(localStorage.getItem("email"))
         if(msg ===""){
-            setErr("All the flieds are required")
+            setErr("All the fields are required")
             setCls("alert alert-danger")
         }else{
             axios.post("http://localhost:3001/TrainningQuery",{username,email,msg,plan:"training"}).then(e=>{
@@ -61,7 +61,7 @@ function Home(){
                                 </div>
                                 <div className="text ms-4">
                                         <div className="heading">
-                                            <h1 className="text-blue">why BMI is Important?</h1>
+                                            <h1 className="text-blue">Why is BMI Important?</h1>
                                             <div className="mb-3"/>
                                         </div>
                                         <p>BMI assists researchers in learning the pattern of eating that contributes to obesity in a population or collection of people. Knowing one's BMI allows medical professionals to reduce the health risks connected with obesity. However, it is a simplistic formula that does not discriminate between fat and lean muscle tissue. It also does not take into account whether the fat is subcutaneous or visceral. If you have any concerns, speak with your doctor.</p>
@@ -75,7 +75,7 @@ function Home(){
                 <div className="container mt-5 pb-4">
                     
                     <div className="heading mb-5 mx-auto">
-                        <h1 className="text-white">Still Worried about your Health!</h1>
+                        <h1 className="text-white">Still Worried About Your Health?</h1>
                         <div className="mb-3 mx-auto bg-white"/>
                         
                     </div>
@@ -86,7 +86,7 @@ function Home(){
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-5 col-sm-10 mx-4 my-3 ">
                             <div className="card card-body">
-                                <h3>Request trainning</h3>
+                                <h3>Request Training</h3>
                                 {localStorage.getItem("name") === null &&
                                 <div className="mx-auto">
                                     <Link to="/Register" className="btn btn-black">Request</Link>
@@ -106,7 +106,7 @@ function Home(){
                         </div>
                         <div className="col-xl-4 col-lg-6 col-md-5 col-sm-10 mx-4 my-3">
                             <div className="card card-body">
-                                <h3>Request a Diet plan</h3>
+                                <h3>Request a Diet Plan</h3>
                                 {localStorage.getItem("name") === null &&
                                 <div className="mx-auto">
                                     <Link to="/Register" className="btn btn-black">Request</Link>

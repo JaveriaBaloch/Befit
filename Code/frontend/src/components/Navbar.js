@@ -30,7 +30,7 @@ export default function Navbar() {
           <Link className="nav-link button" to="/Contact">Contact</Link>
         </li>
         <li className="nav-item">
-          <button className="btn btn-danger rounded-pill" to="/Contact" onClick={logout}>LogOut</button>
+          <button className="btn btn-danger rounded-pill" to="/Contact" onClick={logout}>Logout</button>
         </li>
       </ul>
       }
