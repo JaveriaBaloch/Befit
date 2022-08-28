@@ -27,3 +27,14 @@ CREATE TABLE `Befit`.`Contact_Us` (
   `email` VARCHAR(45) NOT NULL,
   `msg` VARCHAR(545) NOT NULL,
   PRIMARY KEY (`id`));
+
+  -- table For requests 
+CREATE TABLE `Befit`.`requests` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `request` VARCHAR(445) NOT NULL,
+  `reply` TINYINT NOT NULL,
+  `type` VARCHAR(45) NOT NULL,
+  `timestamp` datetime not null default(current_timestamp),
+  PRIMARY KEY (`id`));

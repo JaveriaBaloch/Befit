@@ -69,6 +69,32 @@ app.post("/SendMessage",(req,res)=>{
     })
 
 })
+app.post("/DeitQuery",(req,res)=>{
+    const Insert = `Insert into requests(name,email,request,type) values (?,?,?,?)`
+    console.log(req.body)
+    db.query(Insert,[req.body.username,req.body.email,req.body.msg,req.body.plan],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({user: result})
+      }
+    })
+
+})
+app.post("/TrainningQuery",(req,res)=>{
+    const Insert = `Insert into requests(name,email,request,type) values (?,?,?,?)`
+    console.log(req.body)
+    db.query(Insert,[req.body.username,req.body.email,req.body.msg,req.body.plan],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({user: result})
+      }
+    })
+
+})
 app.listen(3001,()=>{
     console.log("app is running")
 })

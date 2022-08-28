@@ -14,8 +14,8 @@ function Contact_Us(){
             setCls("alert alert-danger")
         }else{
             axios.post("http://localhost:3001/SendMessage",{username,email,msg}).then(e=>{
-                setErr("Your msg is send successfully")
-                setCls("alert alert-success")
+                setErr("Your message is send successfully")
+                setCls("alert alert-primary")
             }).catch(e=>{
                 setErr("Failed to send you query!")
                 setCls("alert alert-danger")
