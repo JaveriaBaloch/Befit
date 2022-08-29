@@ -14,7 +14,7 @@ function Register(){
     const submit = (e) => {
         e.preventDefault()
         if(password === "" || email === "" || confirmPassword === "" ||username === ""){
-            setMessage("All the flieds are required!")
+            setMessage("All the fields are required!")
         }else if (password !== confirmPassword) {
             setMessage("password is not matching!")
         }else if (strongRegex.test(password)){
@@ -34,7 +34,7 @@ function Register(){
         } 
         else{
             setMessage(`Your Password should contain followings:\n
-             a Capital letter, a small letter, a number, a specail character
+             a Capital letter, a small letter, a number, a special character
              and 8 characters`)
     }
 }

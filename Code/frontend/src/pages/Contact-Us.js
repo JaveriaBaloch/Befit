@@ -10,7 +10,7 @@ function Contact_Us(){
     const submit = (e) =>{
         e.preventDefault()
         if(username === "" || email === "" || msg ===""){
-            setErr("All the flieds are required")
+            setErr("All the fields are required")
             setCls("alert alert-danger")
         }else{
             axios.post("http://localhost:3001/SendMessage",{username,email,msg}).then(e=>{
@@ -39,7 +39,7 @@ function Contact_Us(){
                     {err!==""&&<div className={`${cls} col-9 mx-auto`}>{err}</div>}
                     <form onSubmit={(e)=>submit(e)} className="card card-body bg-blue mx-auto">
                         <div className="part1 my-auto text-left text-md-center">
-                            Email : <a href="mailto:Befit@gmail.org" className="text-black my-3  text-decoration-none">Befit@gmail.org</a>
+                            Email: <a href="mailto:Befit@gmail.org" className="text-black my-3  text-decoration-none">Befit@gmail.org</a>
                             <br/>
                             <br/>
                             Phone:<a href="tel:+178473998476" className="text-black my-3  text-decoration-none"> +1 78473998476</a>

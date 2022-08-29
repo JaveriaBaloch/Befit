@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
-const mysql = require('mysql')
+const mysql = require('mysql');
+const { response } = require('express');
 var db = mysql.createConnection({
     host: 'localhost',
     user:'Befit',
@@ -14,6 +15,28 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:false}))
+
+// GET user queries
+app.get("/queries", (req, res) => {
+    if(req.query.email) {
+        const Check = "SELECT * FROM requests WHERE Email = ?";
+        db.query(Check, req.query.email, (err, result) => {
+            if(err) {
+                console.error(err);
+            }
+            else {
+                res.send({queries: result});
+            }
+        })
+    }
+    
+})
+// Delete user queries
+app.delete("/queries", (req, res) => {
+    //TODO: complete
+})
+
+
 
 // for registrating new users
 app.post("/AddUser",(req,res)=>{
@@ -106,6 +129,28 @@ app.post("/YourQueries",(req,res)=>{
       }
     })
 
+})
+app.post("/DeleteQuery",(req,res)=>{
+    const deleteQuery = "Delete from Requests where id = ?"
+    db.query(deleteQuery,[req.body.id],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({msg: "deleted"})
+      }
+    })
+})
+app.post("/YourQuery",(req,res)=>{
+    const select = "Select * from Requests where id = ? and email=?"
+    db.query(select,[req.body.id,req.body.email],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({query:result})
+      }
+    })
 })
 app.listen(3001,()=>{
     console.log("app is running")
