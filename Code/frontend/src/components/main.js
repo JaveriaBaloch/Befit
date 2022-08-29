@@ -1,17 +1,30 @@
 import { useState,useEffect } from "react"
-import { collection,addDoc } from "firebase/firestore"
-import {db} from "../firebase/firebase-config"
+import axios from "axios"
 const MainForHomePage=()=>{
     const [name,setName] = useState("")
     const [email,setEmail] = useState("")
     const [error,setError] = useState("")
-    const subCollectionRef = collection(db,"subscriptions")
-    const subscription = async(e) =>{
+    const [cls,setCls] = useState("")
+    const subscription=(e) =>{
         e.preventDefault()
         if(email !== "" && name !==""){
-        await addDoc(subCollectionRef,{name:name,email:email})
+            axios.post("http://localhost:3001/Subscribe",{name,email}).then((e)=>{
+                console.log(e.data)
+                    if(e.data.res=="success"){
+                    setError("Subscribed!")
+                    setCls("alert alert-primary")
+                    }else{
+                        setError("already subscribed!")
+                        setCls("alert alert-danger")
+                    }
+                }
+            ).catch(err=>{
+                setError("Failed to subscribe!")
+                setCls("alert alert-danger")
+            })
         }else{
-            setError("missing")
+            setError("All flieds are required!")
+            setCls("alert alert-danger")
         }
     }
     return(
@@ -26,12 +39,12 @@ const MainForHomePage=()=>{
                     </span>
                 </div>
                 <div className="col-lg-5 col-sm-9 col-md-6 mx-auto">
-                    {error=="missing" && <div className="alert alert-danger">All fields are required!</div>}
-                    <form className="card card-body">
+                    {error!=="" && <div className={cls}>{error}</div>}
+                    <form className="card card-body" onSubmit={e=>subscription(e)}>
                         <h3>Subscribe to our newsletter</h3>
                         <input className="form-control my-2" placeholder="Name" required onChange={e=>setName(e.target.value)}/>
                         <input className="form-control my-2" type="email" placeholder="Email" onChange={e=>setEmail(e.target.value)}/>
-                        <button className="btn btn-lg btn-black mx-auto my-2 w-75" onClick={e=>subscription(e)}>Subscribe</button>
+                        <button className="btn btn-lg btn-black mx-auto my-2 w-75">Subscribe</button>
                     </form>
                 </div>
             </div>

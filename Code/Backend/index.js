@@ -16,28 +16,6 @@ app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
-// GET user queries
-app.get("/queries", (req, res) => {
-    if(req.query.email) {
-        const Check = "SELECT * FROM requests WHERE Email = ?";
-        db.query(Check, req.query.email, (err, result) => {
-            if(err) {
-                console.error(err);
-            }
-            else {
-                res.send({queries: result});
-            }
-        })
-    }
-    
-})
-// Delete user queries
-app.delete("/queries", (req, res) => {
-    //TODO: complete
-})
-
-
-
 // for registrating new users
 app.post("/AddUser",(req,res)=>{
     const Check = `SELECT COUNT(Email) as email FROM users WHERE Email = ?`
@@ -150,6 +128,28 @@ app.post("/YourQuery",(req,res)=>{
         if(result){
             res.send({query:result})
       }
+    })
+})
+app.post("/Subscribe",(req,res)=>{
+    const Check = `SELECT COUNT(email) as email FROM subscribers WHERE Email = ?`
+    db.query(Check,req.body.email,(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result[0].email>0){
+            res.send({res:"Exist"})
+        }
+        else{
+            const insert = "insert into subscribers (name,email) values (?,?)"
+             db.query(insert,[req.body.name,req.body.email],(err,result)=>{
+            if(err){
+                // res.send(err)
+            }
+            if(result){
+                res.send({res:"success"})
+        }
+    })
+     }
     })
 })
 app.listen(3001,()=>{
