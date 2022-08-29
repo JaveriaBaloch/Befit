@@ -51,6 +51,7 @@ const deleteQuery =(id) =>{
                     <div className="mx-auto mb-1 bg-black"/>
             </div>
             </main>
+<<<<<<< Updated upstream
         
         <div className="container my-5">
             
@@ -73,6 +74,23 @@ const deleteQuery =(id) =>{
                                 {renderTable()}
                             </tbody>
                         </table>
+=======
+            <div className="container">
+                <div className="row">
+                    <div className="col-9 mx-auto">
+                        {queries.map(query=>{
+                            return(
+                                    <div key={query.id} className="card card-body my-4 rounded-2">
+                                        <div>{query.request}</div>
+                                        <small className="text-muted">uploaded on:{query.timestamp}</small>
+                                        <div className="btn-group">
+                                        <button className="btn btn-warning btn-lg rounded-pills">Edit</button>
+                                        <button className="btn btn-danger btn-lg rounded-pills">Delete</button>
+                                        </div>
+                                    </div>
+                            )
+                        })}
+>>>>>>> Stashed changes
                     </div>
                  </div>
              </div>
