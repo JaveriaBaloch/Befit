@@ -1,21 +1,32 @@
 import axios from 'axios'
-import json from 'json5'
-import {useState} from 'react'
+//import json from 'json5'
+import {useEffect, useState} from 'react'
 import {useNavigate,Link} from "react-router-dom"
 
 function YourQueries(){
-    var tableData = "";
-    axios.get('http://localhost:3001/queries', {params : {email:localStorage.getItem("email")}}).then(query => {
-        var data = json.parse(query.request.response);
-        for(let i = 0; i < data.queries.length; i++) {
-            tableData = tableData + "<td scope='row'>Test</td>";
-        }
-    })
-    .catch(response => {
-        console.error(response);
-    })
+    // Source for below fetching code:
+    // https://stackoverflow.com/questions/56896037/using-react-hooks-axios-to-fetch-data-and-display-in-a-table
+    const [data, setData] = useState([])
 
-    console.log(tableData);
+    useEffect(() => {
+        axios.get("http://localhost:3001/queries", {params : {email:localStorage.getItem("email")}}).then(json => setData(json.data))
+    }, [])
+
+    function renderTable(queries) {
+        return queries.map(query => {
+            return (
+                <tr>
+                    <td scope="row">{query.id}</td>
+                    <td>{query.name}</td>
+                    <td>{query.email}</td>
+                    <td>{query.request}</td>
+                    <td>{query.timestamp}</td>
+                    <td>Something</td>
+                </tr>
+            )
+        })
+
+    }
 
     return(
         <section className="row" id="Contact">
@@ -44,15 +55,7 @@ function YourQueries(){
                                 </tr>
                             </thead>
                             <tbody>
-                                {tableData}
-                                {/* <tr>
-                                    <td scope="row">Something</td>
-                                    <td>Something</td>
-                                    <td>Something</td>
-                                    <td>Something</td>
-                                    <td>Something</td>
-                                    <td>Something</td>
-                                </tr> */}
+                                {renderTable(data.queries)}
                             </tbody>
                         </table>
                     </div>
