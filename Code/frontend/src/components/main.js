@@ -34,8 +34,8 @@ const MainForHomePage=()=>{
                     <h1>Be Healthy Be Happy</h1>
                     <p>Are you concerned about your health, weight and need a diet plan? We are here to help!</p>
                     <span>
-                        <a className="btn btn-black my-1" href="#plan">Request diet plane</a>
-                        <a className="btn btn-black my-1" href="#plan">Request training plane</a>
+                        <a className="btn btn-black my-1" href="#plan">Request Diet Plan</a>
+                        <a className="btn btn-black my-1" href="#plan">Request Training Plan</a>
                     </span>
                 </div>
                 <div className="col-lg-5 col-sm-9 col-md-6 mx-auto">

@@ -31,10 +31,6 @@ app.get("/queries", (req, res) => {
     }
     
 })
-// Delete user queries
-app.delete("/queries", (req, res) => {
-    //TODO: complete
-})
 
 
 
