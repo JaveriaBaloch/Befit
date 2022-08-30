@@ -10,14 +10,14 @@ function Contact_Us(){
     const submit = (e) =>{
         e.preventDefault()
         if(username === "" || email === "" || msg ===""){
-            setErr("All the fields are required")
+            setErr("All the fields must be filled in!")
             setCls("alert alert-danger")
         }else{
             axios.post("http://localhost:3001/SendMessage",{username,email,msg}).then(e=>{
-                setErr("Your message is send successfully")
+                setErr("Your message has been sent successfully!")
                 setCls("alert alert-primary")
             }).catch(e=>{
-                setErr("Failed to send you query!")
+                setErr("Failed to send your query!")
                 setCls("alert alert-danger")
             })
         }
