@@ -38,3 +38,9 @@ CREATE TABLE `Befit`.`requests` (
   `type` VARCHAR(45) NOT NULL,
   `timestamp` datetime not null default(current_timestamp),
   PRIMARY KEY (`id`));
+
+  -- table For subscribers
+CREATE TABLE `Befit`.`subscribers` (
+  `email` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  UNIQUE INDEX `idsubscribers_UNIQUE` (`email` ASC));

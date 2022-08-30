@@ -150,6 +150,10 @@ footer{
   margin-top: 4rem;
   position: relative;
 }
+table{
+border-radius: 3px !important;
+  overflow: scroll;
+}
 
 /* CSS BREAKING POINTS */
 @media only screen and (max-width:992px){

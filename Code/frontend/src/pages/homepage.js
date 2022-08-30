@@ -14,13 +14,11 @@ function Home(){
     const [err, setErr] = useState("")
     const dietPlan = (e) =>{
         e.preventDefault()
-        setUsername(localStorage.getItem("name"))
-        setEmail(localStorage.getItem("email"))
         if(msg ===""){
             setErr("All the fields are required")
             setCls("alert alert-danger")
         }else{
-            axios.post("http://localhost:3001/DeitQuery",{username,email,msg,plan:"diet"}).then(e=>{
+            axios.post("http://localhost:3001/TrainningQuery",{username:localStorage.getItem("name"),email:localStorage.getItem("email"),msg,plan:"training"}).then(e=>{
                 setErr("Your message is send successfully")
                 setCls("alert alert-primary")
             }).catch(e=>{
@@ -31,13 +29,11 @@ function Home(){
     }
     const TrainningPlan = (e) =>{
         e.preventDefault()
-        setUsername(localStorage.getItem("name"))
-        setEmail(localStorage.getItem("email"))
         if(msg ===""){
             setErr("All the fields are required")
             setCls("alert alert-danger")
         }else{
-            axios.post("http://localhost:3001/TrainningQuery",{username,email,msg,plan:"training"}).then(e=>{
+            axios.post("http://localhost:3001/TrainningQuery",{username:localStorage.getItem("name"),email:localStorage.getItem("email"),msg,plan:"training"}).then(e=>{
                 setErr("Your message is send successfully")
                 setCls("alert alert-primary")
             }).catch(e=>{

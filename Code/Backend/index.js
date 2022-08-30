@@ -118,6 +118,62 @@ app.post("/TrainningQuery",(req,res)=>{
     })
 
 })
+app.post("/YourQueries",(req,res)=>{
+    const select = "Select * From Requests where email = ? order by `timestamp`"
+    db.query(select,[req.body.email],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({queries: result})
+      }
+    })
+
+})
+app.post("/DeleteQuery",(req,res)=>{
+    const deleteQuery = "Delete from Requests where id = ?"
+    db.query(deleteQuery,[req.body.id],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({msg: "deleted"})
+      }
+    })
+})
+app.post("/YourQuery",(req,res)=>{
+    const select = "Select * from Requests where id = ? and email=?"
+    db.query(select,[req.body.id,req.body.email],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({query:result})
+      }
+    })
+})
+app.post("/Subscribe",(req,res)=>{
+    const Check = `SELECT COUNT(email) as email FROM subscribers WHERE Email = ?`
+    db.query(Check,req.body.email,(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result[0].email>0){
+            res.send({res:"Exist"})
+        }
+        else{
+            const insert = "insert into subscribers (name,email) values (?,?)"
+             db.query(insert,[req.body.name,req.body.email],(err,result)=>{
+            if(err){
+                // res.send(err)
+            }
+            if(result){
+                res.send({res:"success"})
+        }
+    })
+     }
+    })
+})
 app.listen(3001,()=>{
     console.log("app is running")
 })
