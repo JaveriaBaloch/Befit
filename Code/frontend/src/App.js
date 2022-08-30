@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import SignIn from './pages/SignIn';
 import YourQueries from './pages/Your-Queries';
 import View from './pages/view';
+import Profile from './pages/profile';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/Queries" exact element={<YourQueries/>}/>
         <Route path="*" exact element={<PageNotFound/>}/>
         <Route path="/Queries/Edit/:id" element={<View/>}/>
+        <Route path="/Profile" element={<Profile/>}/>
       </Routes>
       <Footer/>
     </div>
