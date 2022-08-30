@@ -1,42 +1,27 @@
 import axios from 'axios'
+//import json from 'json5'
 import {useEffect, useState} from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import {Link} from 'react-router-dom'
+import {useNavigate,Link} from "react-router-dom"
 
 function YourQueries(){
+    // Source for below fetching code:
+    // https://stackoverflow.com/questions/56896037/using-react-hooks-axios-to-fetch-data-and-display-in-a-table
     const [data, setData] = useState([])
-            
+
     useEffect(() => {
-        axios.post("http://localhost:3001/YourQueries",{email:localStorage.getItem("email")})
-        .then(res=>setData(res.data.queries))
-            
+        axios.get("http://localhost:3001/queries", {params : {email:localStorage.getItem("email")}}).then(json => setData(json.data))
     }, [])
-    
-const deleteQuery =(id) =>{
-        axios.post("http://localhost:3001/DeleteQuery",{id:id})
-        .then(()=>axios.post("http://localhost:3001/YourQueries",{email:localStorage.getItem("email")}).then(res=>setData(res.data.queries))
-        )
-        .catch()
-        console.log(id)
-    }
-    function renderTable() {
-       let i=0
-       return data.map(query => {
-        const link = `Edit/${query.id}`
-                 i++
+
+    function renderTable(queries) {
+        return queries.map(query => {
             return (
-                <tr key={query.id}>
-                    <td>{i}</td>
+                <tr>
+                    <td scope="row">{query.id}</td>
                     <td>{query.name}</td>
                     <td>{query.email}</td>
                     <td>{query.request}</td>
                     <td>{query.timestamp}</td>
-                    <td>
-                    <button className="btn btn-danger my-1 mx-auto w-100 rounded-pill" onClick={()=>deleteQuery(query.id)}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
-                    <Link className="btn btn-black my-1 mx-auto w-100 rounded-pill" to={link}> <FontAwesomeIcon icon={faEye} /> View</Link>
-                    </td>
+                    <td>Something</td>
                 </tr>
             )
         })
@@ -44,20 +29,21 @@ const deleteQuery =(id) =>{
     }
 
     return(
-        <section className="row mb-5" id="Contact">
+        <section className="row" id="Contact">
             <main>
-            <div className="heading mx-auto mb-5">
+            <div className="heading mx-auto">
                     <h1 className="text-center mt-3 text-black">Your Queries</h1>
                     <div className="mx-auto mb-1 bg-black"/>
             </div>
             </main>
-        <div className="container my-5">
+        
+        <div className="container-fluid">
             
             <div className="row my-1 mb-5">
                 
-                <div className="mx-auto my-1 mb-5 col-12 mb-5">
-                    <div className='mx-auto col-10 mb-5'>
-                        <table class="table table-bordered border-dark table-hover rounded-pill">
+                <div className="mx-auto my-1 mb-5">
+                    <div className='card card-body bg-white mx-auto'>
+                        <table class="table table-bordered border-dark table-hover border-rounded">
                             <thead>
                                 <tr class="table-dark">
                                     <th scope="col">S.no</th>
@@ -69,14 +55,14 @@ const deleteQuery =(id) =>{
                                 </tr>
                             </thead>
                             <tbody>
-                                {renderTable()}
+                                {renderTable(data.queries)}
                             </tbody>
                         </table>
                     </div>
-                 </div>
-             </div>
+                </div>
+            </div>
         </div>
-    </section>
+        </section>
     )
 }
-export default YourQueries
+export default YourQueries;
