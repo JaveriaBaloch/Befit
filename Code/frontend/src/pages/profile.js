@@ -20,9 +20,22 @@ function Profile() {
         else {
             if(password === repeatPassword) {
                 if(strongRegex.test(password)) {
-                    axios.put("http://localhost:3001/changeUserdata", {username, password}).then(e => {
-                        setErr("Changed data successfully");
-                        setCls("alert alert-primary");
+                    let email = localStorage.getItem("email");
+                    axios.put("http://localhost:3001/user", {"username": username, "password": password, "email": email}).then(e => {
+                        if(e.status === 202) {
+                            setErr("Changed data successfully");
+                            setCls("alert alert-primary");
+                            localStorage.removeItem("name");
+                            localStorage.setItem("name", username);
+                        }
+                        else {
+                            let errors = {
+                                500: "The server ran into an issue when processing your request",
+                                410: "There is no database entry for the E-Mail you're currently using"
+                            }
+                            setErr(errors[e.status]);
+                            setCls("alert alert-danger")
+                        }
                     }).catch(e => {
                         setErr("The server ran into an issue when processing your request");
                         setCls("alert alert-danger");

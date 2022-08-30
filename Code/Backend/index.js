@@ -29,7 +29,37 @@ app.get("/queries", (req, res) => {
             }
         })
     }
-    
+})
+// Update user data
+app.put("/user", (req, res) => {
+    if(req.body.email) {
+        const Check = `SELECT * FROM users WHERE Email = ?`
+
+        db.query(Check, req.body.email, (err, result) => {
+            if(err) {
+                // User to update doesn't exist
+                console.error(err);
+                res.status(410).send();
+            }
+            else {
+                // User to update exists
+                const Insert = `UPDATE users SET Name = ?, Password = ? WHERE Email = ?`;
+                db.query(Insert, [req.body.username, req.body.password, req.body.email], (err, result) => {
+                    if(err) {
+                        console.error(err);
+                        res.status(500).send();
+                    }
+                    else {
+                        // Data has been mutated successfully
+                        res.status(202).send();
+                    }
+                })
+            }
+        })
+    }
+    else {
+        res.send("E-Mail is missing in parsed data");
+    }
 })
 
 
@@ -43,7 +73,7 @@ app.post("/AddUser",(req,res)=>{
         }
         if(result[0].email>0){
             console.log(result[0].email)
-            res.send({user:"Already Taken Exist"})
+            res.send({user:"Email is already used"})
         }
         else{
             const Insert = `insert into users(Name,Email,Password) value (?,?,?)`
@@ -171,5 +201,5 @@ app.post("/Subscribe",(req,res)=>{
     })
 })
 app.listen(3001,()=>{
-    console.log("app is running")
+    console.log("app is running on port 3001");
 })
