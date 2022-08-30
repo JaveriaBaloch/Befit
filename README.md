@@ -16,8 +16,8 @@ PerfectGame is a health and fitness website where visitors may calculate their B
         - Make sure the server is running on port 3006
     2. Create a database according to the info in `Code/Backend/mysqlcode.sql`
     3. Create a user that has full access to that database with the following credentials
-        > Username: BeFit
-        Host: localhost
+        > Username: BeFit<br>
+        Host: localhost<br>
         Password: Potsdam!sGr8
 
 2. **Setup the backend**
