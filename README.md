@@ -17,8 +17,8 @@ PerfectGame is a health and fitness website where visitors may calculate their B
     2. Create a database according to the info in `Code/Backend/mysqlcode.sql`
     3. Create a user that has full access to that database with the following credentials
         > Username: BeFit
-        > Host: localhost
-        > Password: Potsdam!sGr8
+        Host: localhost
+        Password: Potsdam!sGr8
 
 2. **Setup the backend**
     1. Open a console/terminal in `Code/Backend`
