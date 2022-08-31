@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 
 // GET user queries
 app.get("/queries", (req, res) => {
-   if(req.query.email) {
+   if(req.body.email) {
         const Check = "SELECT * FROM requests WHERE Email = ?";
         db.query(Check, req.query.email, (err, result) => {
             if(err) {
@@ -180,14 +180,14 @@ app.post("/YourQueries",(req,res)=>{
             }
         })
     }
-    else {
-    const select = "Select * From Requests where email = ? order by `timestamp`"
+    else if(req.body.role == "user"){
+    const select = "Select * From Requests where email = ?"
     db.query(select,[req.body.email],(err,result)=>{
         if(err){
             console.log(err)
         }
         if(result){
-            res.send({queries: result})
+            res.send({query: result})
       }
     })
 }
@@ -221,7 +221,8 @@ app.post("/InProgress",(req,res)=>{
         })
     }
     else if(req.body.role == "dietitian"){
-        const reply = false
+        let role = "diet"
+        const reply = 0
         const Check = "SELECT * FROM requests where type = ? and reply =? ";
         db.query(Check,[role,reply],(err, result) => {
             if(err) {
@@ -240,7 +241,7 @@ app.post("/InProgress",(req,res)=>{
             console.log(err)
         }
         if(result){
-            res.send({queries: result})
+            res.send({query: result})
       }
     })
 }
@@ -274,6 +275,7 @@ app.post("/Resolved",(req,res)=>{
         })
     }
     else if(req.body.role == "dietitian"){
+        let role = "diet"
         const reply = true
         const Check = "SELECT * FROM requests where type = ? and reply =? ";
         db.query(Check,[role,reply],(err, result) => {
@@ -293,7 +295,7 @@ app.post("/Resolved",(req,res)=>{
             console.log(err)
         }
         if(result){
-            res.send({queries: result})
+            res.send({query: result})
       }
     })
 }
@@ -354,6 +356,32 @@ app.post("/UpdateClient",(req,res)=>{
             res.send({msg: "deleted"})
       }
     })
+})
+app.post("/ContactForm",(req,res)=>{
+    if(req.body.role == "admin"){
+        const select = "select * from contact_Us order by id desc"
+        db.query(select,(err,result)=>{
+            if(err){
+                console.log(err)
+            }
+            if(result){
+                res.send({messages:result})
+          }
+        }) 
+    }
+})
+app.post("/ContactFormDeleteQuery",(req,res)=>{
+    if(req.body.role == "admin"){
+        const select = "delete from contact_Us where id = ?"
+        db.query(select,[req.body.id],(err,result)=>{
+            if(err){
+                console.log(err)
+            }
+            if(result){
+                res.send({messages:result})
+          }
+        }) 
+    }
 })
 app.post("/YourQuery",(req,res)=>{
    if(req.body.role == "user"){

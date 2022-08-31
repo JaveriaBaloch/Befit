@@ -44,15 +44,16 @@ const deleteQuery =(id) =>{
                     <td>{query.timestamp}</td>
                     {localStorage.getItem("role")== "user"&&
                      <td>
-                     <button className="btn btn-danger my-1 mx-auto w-100 rounded-pill" onClick={()=>deleteQuery(query.id,query.email)}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
                      <Link className="btn btn-black my-1 mx-auto w-100 rounded-pill" to={link}> <FontAwesomeIcon icon={faEye} /> View</Link>
+                     <button className="btn btn-danger my-1 mx-auto w-100 rounded-pill" onClick={()=>deleteQuery(query.id,query.email)}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
+                    
                      </td>
                     }
                     {localStorage.getItem("role") == "admin"&&
                      <td>
-                     <button className="btn btn-danger my-1 mx-auto w-100 rounded-pill" onClick={()=>deleteQuery(query.id,query.email)}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
                      <Link className="btn btn-black my-1 mx-auto w-100 rounded-pill" to={link}> <FontAwesomeIcon icon={faEye} /> View</Link>
-                     </td>
+                     <button className="btn btn-danger my-1 mx-auto w-100 rounded-pill" onClick={()=>deleteQuery(query.id,query.email)}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
+                    </td>
                     }
                     {localStorage.getItem("role") == "instructor"&&
                      <td>                     
@@ -88,11 +89,14 @@ const deleteQuery =(id) =>{
             <div className="row my-1 mb-5">
                 
                 <div className="mx-auto my-1 mb-5 col-12 mb-5">
+                {data.length>0 &&
                     <div className='mx-auto col-10 mb-5'>
+                        
                     <div className='btn-group w-100'>
                      <button className="btn btn-info" onClick={inProgress}>In Progress</button>
                      <button className="btn btn-success" onClick={inResolved}>Resolved</button>
                      </div>
+                    
                         <table class="table table-bordered border-dark table-hover rounded-pill">
                             <thead>
                                 <tr class="table-dark">
@@ -111,7 +115,13 @@ const deleteQuery =(id) =>{
                                
                             </tbody>
                         </table>
-                    </div>
+                       
+                    </div>}
+                    {data.length==0 && <div className='my-5 py-5'>
+                        <p className='text-center my-5'>
+                        <b className='my-5 text-center'>No Request to show</b>
+                        </p>
+                        </div>}
                  </div>
              </div>
         </div>

@@ -31,6 +31,7 @@ export default function Navbar() {
           <li><Link class="dropdown-item" to="/Clients">Clients</Link></li>
           <li><Link class="dropdown-item" to="/Dietitians">Dietitians</Link></li>
           <li><Link class="dropdown-item" to="/Instructors">Instructors</Link></li>
+          <li><Link class="dropdown-item" to="/ContactMessages">ContactMessages</Link></li>
 
         </ul>
       </li>
@@ -64,6 +65,26 @@ export default function Navbar() {
       }
        {/* navbar for logged In  user */
       localStorage.getItem("role") == "instructor" &&
+      <ul className="navbar-nav ms-auto">
+        <li className="nav-item">
+          <Link className="nav-link button" to="/">Home</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link button" to="/Profile">Profile</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link button" to="/Queries">Your Queries</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link button" to="/Contact">Contact</Link>
+        </li>
+        <li className="nav-item">
+          <button className="btn btn-danger rounded-pill" onClick={logout}>Logout</button>
+        </li>
+      </ul>
+      }
+      {
+       localStorage.getItem("role") == "dietitian" &&
       <ul className="navbar-nav ms-auto">
         <li className="nav-item">
           <Link className="nav-link button" to="/">Home</Link>

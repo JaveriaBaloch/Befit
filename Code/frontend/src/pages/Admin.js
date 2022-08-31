@@ -16,7 +16,7 @@ function Admin(){
     
 const deleteQuery =(id) =>{
         axios.post("http://localhost:3001/ClientDeleteQuery",{id:id})
-        .then(()=>axios.post("http://localhost:3001/Client",{email:localStorage.getItem("email")}).then(res=>setData(res.data.queries))
+        .then(()=>axios.post("http://localhost:3001/Client",{role:"admin"}).then(res=>setData(res.data.queries))
         )
         .catch()
         console.log(id)
@@ -33,9 +33,10 @@ const deleteQuery =(id) =>{
                     <td>{query.Email}</td>
                     <td>{query.role}</td>
                     <td>
-                    <button className="btn btn-danger my-1 mx-auto w-100 rounded-pill" onClick={()=>deleteQuery(query.ID)}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
                     <Link className="btn btn-info my-1 mx-auto w-100 rounded-pill" to={link}> <FontAwesomeIcon icon={faUserEdit} /> Update</Link>
 
+                    <button className="btn btn-danger my-1 mx-auto w-100 rounded-pill" onClick={()=>deleteQuery(query.ID)}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
+                   
                     </td>
                 </tr>
             )

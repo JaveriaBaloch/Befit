@@ -16,7 +16,7 @@ function Dietitian(){
     
 const deleteQuery =(id) =>{
         axios.post("http://localhost:3001/ClientDeleteQuery",{id:id})
-        .then(()=>axios.post("http://localhost:3001/Client",{email:localStorage.getItem("email")}).then(res=>setData(res.data.queries))
+        .then(()=>axios.post("http://localhost:3001/Client",{role:"dietitian"}).then(res=>setData(res.data.queries))
         )
         .catch()
         console.log(id)
@@ -33,8 +33,9 @@ const deleteQuery =(id) =>{
                     <td>{query.Email}</td>
                     <td>{query.role}</td>
                     <td>
-                    <button className="btn btn-danger my-1 mx-auto w-100 rounded-pill" onClick={()=>deleteQuery(query.ID)}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
                     <Link className="btn btn-info my-1 mx-auto w-100 rounded-pill" to={link}> <FontAwesomeIcon icon={faUserEdit} /> Update</Link>
+                    <button className="btn btn-danger my-1 mx-auto w-100 rounded-pill" onClick={()=>deleteQuery(query.ID)}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
+                  
 
                     </td>
                 </tr>
@@ -57,6 +58,7 @@ const deleteQuery =(id) =>{
                 
                 <div className="mx-auto my-1 mb-5 col-12 mb-5">
                     <div className='mx-auto col-10 mb-5'>
+                    {data.length>0 &&
                         <table class="table table-bordered border-dark table-hover rounded-pill">
                             <thead>
                                 <tr class="table-dark">
@@ -71,6 +73,12 @@ const deleteQuery =(id) =>{
                                 {renderTable()}
                             </tbody>
                         </table>
+                        }
+                        {data.length==0 && <div className='my-5 py-5'>
+                            <p className='text-center my-5'>
+                            <b className='my-5 text-center'>No Dietitian Available</b>
+                            </p>
+                            </div>}
                     </div>
                  </div>
              </div>

@@ -15,6 +15,7 @@ import EditUser from './pages/editUser';
 import Dietitian from './pages/Dietitian';
 import Admin from './pages/Admin';
 import Instructor from './pages/Instructor';
+import Contact_Us_Messages from './pages/Contact_Us_Msg';
 function App() {
 
   return (
@@ -82,6 +83,8 @@ function App() {
  <Route path="/Admins/Edit/:id" element={<EditUser/>}/>
  <Route path="/Instructors/Edit/:id" element={<EditUser/>}/>
  <Route path="/Dietitians/Edit/:id" element={<EditUser/>}/>
+ <Route path="/ContactMessages" element={<Contact_Us_Messages/>}/>
+
 </Routes>
 }
       <Footer/>
