@@ -33,9 +33,7 @@ function App() {
        <Routes>
         <Route path="/" exact element={<Home/>}/>
         <Route path="/Contact" exact element={<Contact_Us/>}/>
-        <Route path="/Register" exact element={<Register/>}/>
-        <Route path="/SignIn" exact element={<SignIn/>}/>
-        <Route path="/Queries" exact element={<YourQueries/>}/>
+           <Route path="/Queries" exact element={<YourQueries/>}/>
         <Route path="*" exact element={<PageNotFound/>}/>
         <Route path="/Queries/Edit/:id" element={<View/>}/>
         <Route path="/Profile" element={<Profile/>}/>
@@ -45,8 +43,6 @@ function App() {
        <Routes>
         <Route path="/" exact element={<Home/>}/>
         <Route path="/Contact" exact element={<Contact_Us/>}/>
-        <Route path="/Register" exact element={<Register/>}/>
-        <Route path="/SignIn" exact element={<SignIn/>}/>
         <Route path="/Queries" exact element={<YourQueries/>}/>
         <Route path="*" exact element={<PageNotFound/>}/>
         <Route path="/Queries/Edit/:id" element={<View/>}/>
@@ -57,9 +53,7 @@ function App() {
        <Routes>
         <Route path="/" exact element={<Home/>}/>
         <Route path="/Contact" exact element={<Contact_Us/>}/>
-        <Route path="/Register" exact element={<Register/>}/>
-        <Route path="/SignIn" exact element={<SignIn/>}/>
-        <Route path="/Queries" exact element={<YourQueries/>}/>
+       <Route path="/Queries" exact element={<YourQueries/>}/>
         <Route path="*" exact element={<PageNotFound/>}/>
         <Route path="/Queries/Edit/:id" element={<View/>}/>
         <Route path="/Profile" element={<Profile/>}/>
@@ -69,8 +63,6 @@ function App() {
  <Routes>
  <Route path="/" exact element={<Home/>}/>
  <Route path="/Contact" exact element={<Contact_Us/>}/>
- <Route path="/Register" exact element={<Register/>}/>
- <Route path="/SignIn" exact element={<SignIn/>}/>
  <Route path="/Queries" exact element={<YourQueries/>}/>
  <Route path="*" exact element={<PageNotFound/>}/>
  <Route path="/Queries/Edit/:id" element={<View/>}/>
