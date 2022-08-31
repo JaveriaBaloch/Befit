@@ -25,7 +25,6 @@ function Profile() {
                         if(e.status === 202) {
                             setErr("Changed data successfully");
                             setCls("alert alert-primary");
-                            localStorage.removeItem("name");
                             localStorage.setItem("name", username);
                         }
                         else {

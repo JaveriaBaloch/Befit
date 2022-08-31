@@ -18,7 +18,7 @@ function Home(){
             setErr("All the fields are required")
             setCls("alert alert-danger")
         }else{
-            axios.post("http://localhost:3001/TrainningQuery",{username:localStorage.getItem("name"),email:localStorage.getItem("email"),msg,plan:"training"}).then(e=>{
+            axios.post("http://localhost:3001/TrainningQuery",{username:localStorage.getItem("name"),email:localStorage.getItem("email"),msg,plan:"diet"}).then(e=>{
                 setErr("Your message is send successfully")
                 setCls("alert alert-primary")
             }).catch(e=>{

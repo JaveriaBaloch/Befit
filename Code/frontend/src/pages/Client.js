@@ -1,21 +1,21 @@
 import axios from 'axios'
 import {useEffect, useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
 
 function Client(){
     const [data, setData] = useState([])
             
     useEffect(() => {
-        axios.post("http://localhost:3001/Client",{email:localStorage.getItem("email")})
+        axios.post("http://localhost:3001/Client",{role:"user"})
         .then(res=>setData(res.data.queries))
             
     }, [])
     
 const deleteQuery =(id) =>{
-        axios.post("http://localhost:3001/DeleteQuery",{id:id})
+        axios.post("http://localhost:3001/ClientDeleteQuery",{id:id})
         .then(()=>axios.post("http://localhost:3001/Client",{email:localStorage.getItem("email")}).then(res=>setData(res.data.queries))
         )
         .catch()
@@ -24,18 +24,18 @@ const deleteQuery =(id) =>{
     function renderTable() {
        let i=0
        return data.map(query => {
-        const link = `Edit/${query.id}`
+        const link = `Edit/${query.ID}`
                  i++
             return (
                 <tr key={query.id}>
                     <td>{i}</td>
-                    <td>{query.name}</td>
-                    <td>{query.email}</td>
-                    <td>{query.request}</td>
-                    <td>{query.timestamp}</td>
+                    <td>{query.Name}</td>
+                    <td>{query.Email}</td>
+                    <td>{query.role}</td>
                     <td>
-                    <button className="btn btn-danger my-1 mx-auto w-100 rounded-pill" onClick={()=>deleteQuery(query.id)}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
-                    <Link className="btn btn-black my-1 mx-auto w-100 rounded-pill" to={link}> <FontAwesomeIcon icon={faEye} /> View</Link>
+                    <button className="btn btn-danger my-1 mx-auto w-100 rounded-pill" onClick={()=>deleteQuery(query.ID)}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
+                    <Link className="btn btn-info my-1 mx-auto w-100 rounded-pill" to={link}> <FontAwesomeIcon icon={faUserEdit} /> Update</Link>
+
                     </td>
                 </tr>
             )
@@ -63,8 +63,7 @@ const deleteQuery =(id) =>{
                                     <th scope="col">S.no</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">E-Mail</th>
-                                    <th scope="col">Issue</th>
-                                    <th scope="col">Time</th>
+                                    <th scope="col">Role</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>

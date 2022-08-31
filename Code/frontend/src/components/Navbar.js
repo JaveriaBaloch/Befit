@@ -14,8 +14,36 @@ export default function Navbar() {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarNav">
+       {/* navbar for logged In  user */
+      localStorage.getItem("role") === "admin" &&
+      <ul className="navbar-nav ms-auto">
+        <li className="nav-item">
+          <Link className="nav-link button" to="/">Home</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link button" to="/Profile">Profile</Link>
+        </li>
+        <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle button" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Queries</a>
+        <ul class="dropdown-menu">
+          <li><Link class="dropdown-item" to="/Queries">Queries</Link></li>
+          <li><Link class="dropdown-item" to="/Admins">Admins</Link></li>
+          <li><Link class="dropdown-item" to="/Clients">Clients</Link></li>
+          <li><Link class="dropdown-item" to="/Dietitians">Dietitians</Link></li>
+          <li><Link class="dropdown-item" to="/Instructors">Instructors</Link></li>
+
+        </ul>
+      </li>
+        <li className="nav-item">
+          <Link className="nav-link button" to="/Contact">Contact</Link>
+        </li>
+        <li className="nav-item">
+          <button className="btn btn-danger rounded-pill" onClick={logout}>Logout</button>
+        </li>
+      </ul>
+      }
       {/* navbar for logged In  user */
-      localStorage.getItem("role") === "user" &&
+      localStorage.getItem("role") == "user" &&
       <ul className="navbar-nav ms-auto">
         <li className="nav-item">
           <Link className="nav-link button" to="/">Home</Link>
@@ -30,12 +58,32 @@ export default function Navbar() {
           <Link className="nav-link button" to="/Contact">Contact</Link>
         </li>
         <li className="nav-item">
-          <button className="btn btn-danger rounded-pill" to="/Contact" onClick={logout}>Logout</button>
+          <button className="btn btn-danger rounded-pill" onClick={logout}>Logout</button>
+        </li>
+      </ul>
+      }
+       {/* navbar for logged In  user */
+      localStorage.getItem("role") == "instructor" &&
+      <ul className="navbar-nav ms-auto">
+        <li className="nav-item">
+          <Link className="nav-link button" to="/">Home</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link button" to="/Profile">Profile</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link button" to="/Queries">Your Queries</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link button" to="/Contact">Contact</Link>
+        </li>
+        <li className="nav-item">
+          <button className="btn btn-danger rounded-pill" onClick={logout}>Logout</button>
         </li>
       </ul>
       }
       {/* navbar for user */
-      localStorage.getItem("role") !== "user" &&
+      localStorage.getItem("role") == undefined &&
       <ul className="navbar-nav ms-auto">
         <li className="nav-item">
           <Link className="nav-link button" to="/">Home</Link>

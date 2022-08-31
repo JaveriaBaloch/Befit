@@ -13,7 +13,7 @@ function SignIn(){
         if(password === "" || email === ""){
             setMessage("All the fields are required!")
         }else{
-                axios.post('http://localhost:3001/Login',{email:email,password:password}).then((response)=>{
+                axios.post('http://localhost:3001/Login',{email:email.toLowerCase(),password:password}).then((response)=>{
                     if(password==response.data.user[0].Password){
                     localStorage.setItem('name',response.data.user[0].Name)
                     localStorage.setItem('email',response.data.user[0].Email)

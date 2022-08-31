@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 
 // GET user queries
 app.get("/queries", (req, res) => {
-    if(req.query.email) {
+   if(req.query.email) {
         const Check = "SELECT * FROM requests WHERE Email = ?";
         db.query(Check, req.query.email, (err, result) => {
             if(err) {
@@ -145,6 +145,42 @@ app.post("/TrainningQuery",(req,res)=>{
 
 })
 app.post("/YourQueries",(req,res)=>{
+    if(req.body.role == "admin"){
+        const Check = "SELECT * FROM requests";
+        db.query(Check, (err, result) => {
+            if(err) {
+                console.error(err);
+            }
+            else {
+                res.send({query: result});
+            }
+        })
+    }
+    else if(req.body.role == "instructor"){
+        let role = "training"
+        const Check = "SELECT * FROM requests where type = ?";
+        db.query(Check,[role], (err, result) => {
+            if(err) {
+                console.error(err);
+            }
+            else {
+                res.send({query: result});
+            }
+        })
+    }
+    else if(req.body.role == "dietitian"){
+        let role = "diet"
+        const Check = "SELECT * FROM requests where type = ?";
+        db.query(Check,[role], (err, result) => {
+            if(err) {
+                console.error(err);
+            }
+            else {
+                res.send({query: result});
+            }
+        })
+    }
+    else {
     const select = "Select * From Requests where email = ? order by `timestamp`"
     db.query(select,[req.body.email],(err,result)=>{
         if(err){
@@ -154,6 +190,113 @@ app.post("/YourQueries",(req,res)=>{
             res.send({queries: result})
       }
     })
+}
+
+})
+app.post("/InProgress",(req,res)=>{
+   
+    if(req.body.role == "admin"){
+        const reply = false
+        const Check = "SELECT * FROM requests where reply = ?";
+        db.query(Check,[reply], (err, result) => {
+            if(err) {
+                console.error(err);
+            }
+            else {
+                res.send({query: result});
+            }
+        })
+    }
+    else if(req.body.role == "instructor"){
+        let role = "training"
+        const reply = 0
+        const Check = "SELECT * FROM requests where type = ? and reply =? ";
+        db.query(Check,[role,0], (err, result) => {
+            if(err) {
+                console.error(err);
+            }
+            else {
+                res.send({query: result});
+            }
+        })
+    }
+    else if(req.body.role == "dietitian"){
+        const reply = false
+        const Check = "SELECT * FROM requests where type = ? and reply =? ";
+        db.query(Check,[role,reply],(err, result) => {
+            if(err) {
+                console.error(err);
+            }
+            else {
+                res.send({query: result});
+            }
+        })
+    }
+    else {
+    const select = "Select * From Requests where email = ? and reply = ?"
+    const reply = false
+    db.query(select,[req.body.email,reply],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({queries: result})
+      }
+    })
+}
+
+})
+app.post("/Resolved",(req,res)=>{
+   
+    if(req.body.role == "admin"){
+        const reply = true
+        const Check = "SELECT * FROM requests where reply = ?";
+        db.query(Check,[reply], (err, result) => {
+            if(err) {
+                console.error(err);
+            }
+            else {
+                res.send({query: result});
+            }
+        })
+    }
+    else if(req.body.role == "instructor"){
+        let role = "training"
+        const reply = 1
+        const Check = "SELECT * FROM requests where type = ? and reply =? ";
+        db.query(Check,[role,reply], (err, result) => {
+            if(err) {
+                console.error(err);
+            }
+            else {
+                res.send({query: result});
+            }
+        })
+    }
+    else if(req.body.role == "dietitian"){
+        const reply = true
+        const Check = "SELECT * FROM requests where type = ? and reply =? ";
+        db.query(Check,[role,reply],(err, result) => {
+            if(err) {
+                console.error(err);
+            }
+            else {
+                res.send({query: result});
+            }
+        })
+    }
+    else {
+    const select = "Select * From Requests where email = ? and reply = ?"
+    const reply = true
+    db.query(select,[req.body.email,reply],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({queries: result})
+      }
+    })
+}
 
 })
 app.post("/DeleteQuery",(req,res)=>{
@@ -167,9 +310,97 @@ app.post("/DeleteQuery",(req,res)=>{
       }
     })
 })
+app.post("/ResolveQuery",(req,res)=>{
+    const resolveQuery = "update requests set reply = true where id = ?"
+    db.query(resolveQuery,[req.body.id],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({msg: "deleted"})
+      }
+    })
+})
+app.post("/Client",(req,res)=>{
+    const deleteQuery = "Select * from users where role = ? "
+    db.query(deleteQuery,[req.body.role],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({queries: result})
+      }
+    })
+})
+app.post("/ClientDeleteQuery",(req,res)=>{
+    const deleteQuery = "Delete from users where id = ? "
+    db.query(deleteQuery,[req.body.id],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({msg: "deleted"})
+      }
+    })
+})
+
+app.post("/UpdateClient",(req,res)=>{
+    const deleteQuery = "update users set role =? where id = ?"
+    db.query(deleteQuery,[req.body.role,req.body.id],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({msg: "deleted"})
+      }
+    })
+})
 app.post("/YourQuery",(req,res)=>{
+   if(req.body.role == "user"){
     const select = "Select * from Requests where id = ? and email=?"
     db.query(select,[req.body.id,req.body.email],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({query:result})
+      }
+    })
+}else if(req.body.role == "admin"){
+    const select = "Select * from Requests where id = ?"
+    db.query(select,[req.body.id],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({query:result})
+      }
+    })
+}else if(req.body.role == "instructor"){
+    const select = "Select * from Requests where id = ?"
+    db.query(select,[req.body.id],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({query:result})
+      }
+    })
+}else if(req.body.role == "dietitian"){
+    const select = "Select * from Requests where id = ?"
+    db.query(select,[req.body.id],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        if(result){
+            res.send({query:result})
+      }
+    })
+}
+})
+app.post("/YourClient",(req,res)=>{
+    const select = "Select * from users where ID = ?"
+    db.query(select,[req.body.id],(err,result)=>{
         if(err){
             console.log(err)
         }
@@ -200,6 +431,7 @@ app.post("/Subscribe",(req,res)=>{
      }
     })
 })
+
 app.listen(3001,()=>{
     console.log("app is running on port 3001");
 })

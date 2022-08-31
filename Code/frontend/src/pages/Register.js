@@ -18,14 +18,14 @@ function Register(){
         }else if (password !== confirmPassword) {
             setMessage("password is not matching!")
         }else if (strongRegex.test(password)){
-            axios.post('http://localhost:3001/AddUser',{name:username,email:email,password:password})
+            axios.post('http://localhost:3001/AddUser',{name:username,email:email.toLowerCase(),password:password})
             .then(e=>{
                 setMessage(e.data.user)
                 if(e.data.user == "Account is created successfully"){
                     localStorage.setItem("name",username)
                     localStorage.setItem("email",email)
                     localStorage.setItem("role","user")
-                    navigation('/')
+                    window.location.href ="http://localhost:3000"
                 }
             })
             .catch(err=>{
