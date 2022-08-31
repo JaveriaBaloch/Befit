@@ -57,9 +57,7 @@ function Profile() {
             {err !== "" && <div className={`${cls} col-9 mx-auto`}>{err}</div>}
             <div className='my-auto col-md-6'>
                 <h1>Profile</h1>
-                <p><Link className='text-black text-decoration-none my-auto' to="/queries">Your Queries <FontAwesomeIcon className='my-auto me-2 ms-1' icon={faArrowCircleRight}/></Link></p>
-                <p><Link className='text-black text-decoration-none my-auto' to="/replies">Replies <FontAwesomeIcon className='my-auto me-2 ms-1' icon={faArrowCircleRight}/></Link></p>
-            </div>
+                <p><Link className='text-black text-decoration-none my-auto' to="/queries">Your Queries <FontAwesomeIcon className='my-auto me-2 ms-1' icon={faArrowCircleRight}/></Link></p>            </div>
             <div className='card my-auto col-md-4 shadow p-3'>
                 <h1 className='text-center text-black'>Update your Profile</h1>
                 <form onSubmit={(e) => submit(e)}>
